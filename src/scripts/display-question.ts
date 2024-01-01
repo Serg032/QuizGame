@@ -64,11 +64,6 @@ const displayQuestion = (
     const choices = [wrongChoice, wrongChoice2, wrongChoice3, correctChoice];
     const shuffledAnswers = shuffleAnswers(choices);
     shuffledAnswers.map((answer) => answerList.appendChild(answer));
-
-    // answerList.appendChild(wrongChoice);
-    // answerList.appendChild(wrongChoice2);
-    // answerList.appendChild(wrongChoice3);
-    // answerList.appendChild(correctChoice);
     answersDiv.appendChild(answerList);
   }
   if (question.type === "boolean") {
