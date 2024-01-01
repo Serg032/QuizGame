@@ -1,4 +1,5 @@
 import { Question } from "../domain/data";
+import shuffleAnswers from "./shuffle-questions-display.js";
 const displayQuestion = (
   question: Question,
   questionHeader: HTMLHeadingElement,
@@ -46,11 +47,6 @@ const displayQuestion = (
     input3.value = spanForLi3.textContent;
     input4.value = spanForLi4.textContent;
 
-    const firstChoiceValue = input.value;
-    const secondChoiceValue = input2.value;
-    const thirdChoiceValue = input3.value;
-    const fourthChoiceValue = input4.value;
-
     divForLi.appendChild(input);
     divForLi.appendChild(spanForLi);
     divForLi2.appendChild(input2);
@@ -65,10 +61,14 @@ const displayQuestion = (
     wrongChoice3.appendChild(divForLi3);
     correctChoice.appendChild(divForLi4);
 
-    answerList.appendChild(wrongChoice);
-    answerList.appendChild(wrongChoice2);
-    answerList.appendChild(wrongChoice3);
-    answerList.appendChild(correctChoice);
+    const choices = [wrongChoice, wrongChoice2, wrongChoice3, correctChoice];
+    const shuffledAnswers = shuffleAnswers(choices);
+    shuffledAnswers.map((answer) => answerList.appendChild(answer));
+
+    // answerList.appendChild(wrongChoice);
+    // answerList.appendChild(wrongChoice2);
+    // answerList.appendChild(wrongChoice3);
+    // answerList.appendChild(correctChoice);
     answersDiv.appendChild(answerList);
   }
   if (question.type === "boolean") {
